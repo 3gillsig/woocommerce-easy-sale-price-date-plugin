@@ -1,0 +1,14 @@
+{
+    "name": "egillsig/woocommerce-easy-sale-date-price",
+    "description": "This plugin",
+    "type": "wordpress-plugin",
+    "license": "GPL2",
+    "authors": [
+        {
+            "name": "Egill Sigurðarson",
+            "email": "egill@egillspegill.is"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
