@@ -27,22 +27,18 @@ defined( 'ABSPATH') or die('Hey, can´t access this file, silly human!');
  }
 
 class woocommerce_easy_sale_date_price {
-    
-    function change_date($array){
-        if($array) {
-            $prods = wc_get_products( );
+    private $prods;
+    function change_date($openingDate,$closingDate){
+        
           
             foreach($prods as $prod){
-                $arg= $prod['price'];
-                $arg=$arg*(1+($prosentage/100));
-                $prod['sale_price']= $arg;
-            }
+                $prod['date_on_sale_from']= $openingDate;
+                $prod['date_on_sale_to'] = $closingDate;
             return $prods;
         }
     }
     function change_price($prosentage){
         if(100 > $prosentage && $prosentage > 0) {
-          $prods = wc_get_products( );
           
             foreach($prods as $prod){
                 $arg= $prod['price'];
@@ -52,6 +48,15 @@ class woocommerce_easy_sale_date_price {
             return $prods;
         }
     }
-    
+    function get_products(){
+        $prods = wc_get_products( );
+        if($prods) {
+            $prosentage = $_GET['prosentage'];
+            $openingDate = $_GET['openingDate'];
+            $closingDate = $_GET['closingDate'];
+            change_price($prosentage);
+            change_date($openingDate, $closingDate);
+        }
+    }
 
 }
